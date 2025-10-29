@@ -20,11 +20,9 @@ Community.
 
 ### Subscribe
 
-![apple calendar](https://github.com/gitevents/ics/blob/main/assets/apple-calendar.png)
-![google calendar](https://github.com/gitevents/ics/blob/main/assets/google-calendar.png)
-
 In Apple Calendar, just go to "File -> New Calendar Subscription" and enter the
 URL, or to the
+
 [Google Calendar Subscriptions from URL](https://calendar.google.com/calendar/u/0/r/settings/addbyurl).
 
 `https://calendar.interoperable.systems`

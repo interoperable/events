@@ -1,0 +1,43 @@
+name: Create Events on Discord & Twitter
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  prepare-microblog:
+    uses: ./.github/workflows/prepare-microblog.yml
+
+  discord:
+    permissions:
+      id-token: write
+    if:
+      contains (github.event.issue.labels.*.name, 'Approved :white_check_mark:')
+    uses: gitevents/broadcast/.github/workflows/discord-event.yml@main
+    with:
+      server-id: '855088264180400198'
+      time-zone: 'Europe/Nicosia'
+
+  bluesky-post:
+    if:
+      contains (github.event.issue.labels.*.name, 'Approved :white_check_mark:')
+    needs: [prepare-microblog]
+    uses: gitevents/broadcast/.github/workflows/bluesky-event.yml@main
+    with:
+      post: ${{ needs.prepare-microblog.outputs.post }}
+    secrets:
+      BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
+      BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
+
+  # tweet-issue:
+  #   if:
+  #     contains (github.event.issue.labels.*.name, 'Approved :white_check_mark:')
+  #   needs: [create-issue-tweet]
+  #   uses: gitevents/broadcast/.github/workflows/twitter-event.yml@main
+  #   with:
+  #     status: ${{ needs.create-issue-tweet.outputs.tweet }}
+  #   secrets:
+  #     consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+  #     consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+  #     access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+  #     access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}

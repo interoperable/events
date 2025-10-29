@@ -1,0 +1,20 @@
+[
+  {
+    "id": "online",
+    "name": "Online on Discord"
+  },
+  {
+    "id": "capecod-ma",
+    "name": "CapeCod",
+    "city": "Dennis Port",
+    "link": "https://maps.app.goo.gl/YuHw7BYrSGXY3VV19",
+    "geo": [41.6702507,-70.1582715]
+  },
+  {
+    "id": "lynn-ma",
+    "name": "LynnShore",
+    "city": "Lynn",
+    "link": "https://maps.app.goo.gl/qNuJdLFkPQVRQXNB7",
+    "geo": [42.4620926,-70.9308772]
+  }
+]
